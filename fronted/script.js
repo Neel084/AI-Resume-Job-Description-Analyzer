@@ -205,7 +205,7 @@ async function startNewChat(event) {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:8000/conversations/",
+            "https://ai-resume-job-description-analyzer.onrender.com/conversations/",
             {
                 method: "POST"
             }
@@ -284,7 +284,7 @@ async function loadConversations() {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:8000/conversations/"
+            "https://ai-resume-job-description-analyzer.onrender.com/conversations/"
         );
 
         if (!response.ok) {
@@ -411,7 +411,7 @@ async function loadConversation(
     try {
 
         const response = await fetch(
-            `http://127.0.0.1:8000/conversations/${conversationId}/messages`
+            `https://ai-resume-job-description-analyzer.onrender.com/conversations/${conversationId}/messages`
         );
 
         if (!response.ok) {
@@ -540,7 +540,7 @@ async function sendMessage(event) {
 
             const response =
                 await fetch(
-                    `http://127.0.0.1:8000/resume/analyze/${currentConversationId}`,
+                    `https://ai-resume-job-description-analyzer.onrender.com/resume/analyze/${currentConversationId}`,
                     {
                         method: "POST",
                         body: formData
@@ -624,7 +624,7 @@ async function sendMessage(event) {
 
         const response =
             await fetch(
-                `http://127.0.0.1:8000/conversations/${currentConversationId}/chat/stream`,
+                `https://ai-resume-job-description-analyzer.onrender.com/conversations/${currentConversationId}/chat/stream`,
                 {
                     method: "POST",
 
@@ -908,7 +908,7 @@ function showChatMenu(
 
                 const response =
                     await fetch(
-                        `http://127.0.0.1:8000/conversations/${conversationId}`,
+                        `https://ai-resume-job-description-analyzer.onrender.com/conversations/${conversationId}`,
                         {
                             method: "DELETE"
                         }
@@ -1172,7 +1172,7 @@ function showRenamePopup(
 
             const response =
                 await fetch(
-                    `http://127.0.0.1:8000/conversations/${conversationId}?title=${encodeURIComponent(newTitle)}`,
+                    `https://ai-resume-job-description-analyzer.onrender.com/conversations/${conversationId}?title=${encodeURIComponent(newTitle)}`,
                     {
                         method: "PATCH"
                     }
@@ -2252,7 +2252,7 @@ if (analyzeJobButton) {
 
                 const response =
                     await fetch(
-                        `http://127.0.0.1:8000/job-matching/analyze/${currentConversationId}`,
+                        `https://ai-resume-job-description-analyzer.onrender.com/job-matching/analyze/${currentConversationId}`,
                         {
                             method: "POST",
                             body: formData
