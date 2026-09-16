@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ResumeAI - AI Resume & Job Description Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-header">
+                <h2>ResumeAI</h2>
+            </div>
+
+            <button
+                class="new-chat-btn"
+                id="newChatButton"
+                type="button"
+            >
+                <span>＋</span>
+                New chat
+            </button>
+
+            <div
+                class="chat-history"
+                id="chatHistory"
+            >
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN CHAT ================= -->
+
+        <main class="chat-container">
+
+            <!-- ================= HEADER ================= -->
+
+            <header class="chat-header">
+
+                <div class="header-left">
+
+                    <button
+                        id="sidebarToggle"
+                        class="sidebar-toggle"
+                        title="Toggle chat history"
+                        type="button"
+                    >
+                        ☰
+                    </button>
+
+                    <h3>
+                        ResumeAI
+                    </h3>
+
+                </div>
+
+
+                <button
+                    class="theme-button"
+                    id="themeButton"
+                    title="Toggle theme"
+                    type="button"
+                >
+                    🌙
+                </button>
+
+            </header>
+
+
+            <!-- ================= CHAT MESSAGES ================= -->
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            >
+
+                <div class="welcome">
+
+                    <div class="welcome-icon">
+                        📄
+                    </div>
+
+                    <h1>
+                        ResumeAI
+                    </h1>
+
+                    <p>
+                        AI-powered Resume & Job Description Analyzer
+                        to help you improve your resume, match jobs,
+                        and become more ATS-friendly.
+                    </p>
+
+
+                    <div class="welcome-features">
+
+                        <div class="welcome-feature">
+
+                            <span>
+                                📊
+                            </span>
+
+                            <strong>
+                                Resume Score
+                            </strong>
+
+                            <small>
+                                Overall resume evaluation
+                            </small>
+
+                        </div>
+
+
+                        <div class="welcome-feature">
+
+                            <span>
+                                🤖
+                            </span>
+
+                            <strong>
+                                ATS Analysis
+                            </strong>
+
+                            <small>
+                                Check ATS compatibility
+                            </small>
+
+                        </div>
+
+
+                        <div class="welcome-feature">
+
+                            <span>
+                                🎯
+                            </span>
+
+                            <strong>
+                                Job Matching
+                            </strong>
+
+                            <small>
+                                Compare your resume with a job description
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= INPUT AREA ================= -->
+
+            <div class="input-area">
+
+                <div class="input-box">
+
+
+                    <!-- ================= SELECTED FILE ================= -->
+
+                    <div
+                        id="selectedFileContainer"
+                        class="selected-file-container"
+                    >
+                    </div>
+
+                    <!-- ================= JOB DESCRIPTION ================= -->
+
+                    <div
+                        id="jobMatchContainer"
+                        style="
+                            display: none;
+                            margin: 12px 0;
+                            padding: 14px;
+                            border: 1px solid #d1d5db;
+                            border-radius: 14px;
+                        "
+                    >
+
+                        <div
+                            style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-bottom: 8px;
+                            "
+                        >
+
+                            <strong>
+                                🎯 Job Description
+                            </strong>
+
+                            <button
+                                id="closeJobMatchButton"
+                                type="button"
+                                style="
+                                    border: none;
+                                    background: transparent;
+                                    cursor: pointer;
+                                    font-size: 18px;
+                                "
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+
+                        <textarea
+                            id="jobDescriptionInput"
+                            rows="6"
+                            placeholder="Paste the job description here..."
+                            style="
+                                width: 100%;
+                                resize: vertical;
+                                box-sizing: border-box;
+                                padding: 12px;
+                                border-radius: 10px;
+                                border: 1px solid #d1d5db;
+                                font-family: inherit;
+                                font-size: 14px;
+                            "
+                        ></textarea>
+
+
+                        <button
+                            id="analyzeJobButton"
+                            type="button"
+                            style="
+                                margin-top: 10px;
+                                padding: 10px 16px;
+                                border: none;
+                                border-radius: 10px;
+                                cursor: pointer;
+                                font-weight: 600;
+                            "
+                        >
+                            🎯 Analyze Job Match
+                        </button>
+
+                    </div>
+
+
+                    <!-- ================= INPUT ROW ================= -->
+
+                    <div class="input-row">
+
+                        <!-- PLUS / ATTACH BUTTON -->
+
+                        <button
+                            id="attachButton"
+                            class="attach-button"
+                            title="Add files"
+                            type="button"
+                        >
+                            +
+                        </button>
+
+
+                        <!-- MESSAGE INPUT -->
+
+                        <textarea
+                            id="messageInput"
+                            placeholder="Ask anything about your resume or career..."
+                            rows="1"
+                        ></textarea>
+
+
+                        <!-- SEND BUTTON -->
+
+                        <button
+                            id="sendButton"
+                            type="button"
+                            title="Send"
+                        >
+                            ➤
+                        </button>
+
+                    </div>
+
+
+                    <!-- ================= ATTACHMENT MENU ================= -->
+
+                    <div
+                        id="attachMenu"
+                        class="attach-menu"
+                    >
+
+                        <button
+                            id="uploadResumeOption"
+                            class="attach-option"
+                            type="button"
+                        >
+
+                            <span class="attach-option-icon">
+                                📄
+                            </span>
+
+
+                            <span class="attach-option-text">
+
+                                <strong>
+                                    Upload Resume
+                                </strong>
+
+                                <small>
+                                    PDF file
+                                </small>
+
+                            </span>
+
+                        </button>
+
+                        <button
+                            id="jobMatchOption"
+                            class="attach-option"
+                            type="button"
+                        >
+
+                            <span class="attach-option-icon">
+                                🎯
+                            </span>
+
+                            <span class="attach-option-text">
+
+                                <strong>
+                                    Job Match Analysis
+                                </strong>
+
+                                <small>
+                                    Compare resume with job description
+                                </small>
+
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HIDDEN FILE INPUT -->
+
+                <input
+                    type="file"
+                    id="resumeInput"
+                    accept=".pdf,application/pdf"
+                    hidden
+                >
+
+
+                <!-- DISCLAIMER -->
+
+                <p class="disclaimer">
+                    ResumeAI can make mistakes.
+                    Verify important information.
+                </p>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- MARKED.JS FOR MARKDOWN -->
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- OUR JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
